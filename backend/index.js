@@ -10,14 +10,17 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const fs = require('fs');
 const uploadMiddleware = multer({dest:'uploads/'})
+
 const salt = bcryprt.genSaltSync(10);
 const secret = "edkn2ufu4b9b3irvn3ov";
+
 app.use(cors({credentials:true,origin:"http://localhost:3000"}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads',express.static(__dirname+'/uploads'));
 
-const mongo_connection_str = process.env.MONGO_CONNECTION_STR;
+mongoose.connect('mongodb+srv://Mongo-demo:3nKAaI5rQrFtYZxQ@cluster0.eorfljg.mongodb.net/?retryWrites=true&w=majority');
+
 
 app.get("/ping",(req,res)=>{
     res.json("ok");
